@@ -1,0 +1,108 @@
+// general style updates
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Ubuntu";
+}
+
+section { min-height: 30vh; position: relative; }
+
+nav {
+    .site-container {
+        width: 1280px;
+        max-width: 98%;
+        margin: 0 auto;
+        height: 95px;
+    }
+    .patreon-button {
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        img {
+            height: auto;
+            width: 200px;
+        }
+    }
+}
+
+.title-blocks {
+    padding-top: 100px;
+    .site-container {
+        width: 980px;
+        max-width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .left-llax, .right-llax {
+        max-width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+    .left-llax {
+        .book {
+            max-width: 195px;
+            width: 90%;
+            margin-left: 100px;
+            padding-bottom: 50px;
+        }
+        .face {
+            transform: rotate(-8deg);
+            max-width: 180px;
+            width: 100%;
+            padding-bottom: 40px;
+        }
+        .reel {
+            max-width: 120px;
+            width: 70%;
+            margin-left: 90px;
+        }
+    }
+    .right-llax {
+        .book {
+            position: relative;
+            right: 140px;
+            transform: rotate(23deg);
+            max-width: 150px;
+            width: 70%;
+            padding-bottom: 50px;
+        }
+        .face {
+            transform: rotate(6deg);
+            max-width: 180px;
+            width: 100%;
+            padding-bottom: 40px;
+        }
+        .reel {
+            position: relative;
+            max-width: 170px;
+            width: 90%;
+            right: 120px;
+        }
+    }
+    .logo {
+        position: absolute;
+        top: 70%; left: 50%;
+        transform: translate(-50%, -70%);
+        width: 450px;
+        max-width: 45%;
+        height: auto;
+    }
+}
+.podcast {
+    padding-top: 100px;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    color: grey;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
