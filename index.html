@@ -3,47 +3,104 @@ layout: main
 title: Cover to Credits
 ---
 <nav>
-  <div class="site-container">
-    <a class="patreon-button" href="#become" target="_blank" rel="noopener noreferrer"><img src="/cover2creds/assets/images/patreon_button.png" alt="Become a Patron"></a>
+  <div class="huge-site-container">
+    <a class="patreon-button" href="#become" target="_blank" rel="noopener noreferrer"><img src="{{ site.baseurl }}/assets/images/patreon_button.png" alt="Become a Patron"></a>
   </div>
 </nav>
 <section class="title-blocks">
   <div class="site-container">
     <div class="left-llax">
-      <img src="/cover2creds/assets/images/book.svg" alt="" class="book rellax" data-rellax-speed="1">
-      <img src="/cover2creds/assets/images/adina.svg"  alt="that's Adina" class="face rellax" data-rellax-speed="-1">
-      <img src="/cover2creds/assets/images/reel.svg" alt="" class="reel rellax" data-rellax-speed="-1">
+      <img src="{{ site.baseurl }}/assets/images/book.svg" alt="" class="book rellax" data-rellax-speed="1">
+      <img src="{{ site.baseurl }}/assets/images/adina.svg"  alt="that's Adina" class="face rellax" data-rellax-speed="-1">
+      <img src="{{ site.baseurl }}/assets/images/reel.svg" alt="" class="reel rellax" data-rellax-speed="-1">
     </div>
-    <img class="logo" src="/cover2creds/assets/images/logo.svg" alt="Cover to Credits Logo" srcset="">
+    <img class="logo" src="{{ site.baseurl }}/assets/images/logo.svg" alt="Cover to Credits Logo" srcset="">
     <div class="right-llax">
-      <img src="/cover2creds/assets/images/book.svg" alt="" class="book" data-rellax-speed="1">
-      <img src="/cover2creds/assets/images/ian.svg"  alt="that's Ian" class="face rellax" data-rellax-speed="-1">
-      <img src="/cover2creds/assets/images/reel.svg" alt="" class="reel rellax" data-rellax-speed="-1.5">
+      <img src="{{ site.baseurl }}/assets/images/book.svg" alt="" class="book" data-rellax-speed="1">
+      <img src="{{ site.baseurl }}/assets/images/ian.svg"  alt="that's Ian" class="face rellax" data-rellax-speed="-1">
+      <img src="{{ site.baseurl }}/assets/images/reel.svg" alt="" class="reel rellax" data-rellax-speed="-1.5">
     </div>
   </div>
 </section>
 <section class="podcast">
-  <h2>This will be a section connected to the Podcast API</h2>
-</section>
-<section>
-  <div class="flex-container">
-    <h2>About</h2>
-    <div>
-      <a href="#social" target="_blank" class="icon"><img src="/cover2creds/assets/images/patreon.svg" alt="Patreon"></a>
-      <a href="#social" target="_blank" class="icon"><img src="/cover2creds/assets/images/face.svg"    alt="Facebook"></a>
-      <a href="#social" target="_blank" class="icon"><img src="/cover2creds/assets/images/twitter.svg"   alt="Twitter"></a>
-      <a href="#social" target="_blank" class="icon"><img src="/cover2creds/assets/images/insta.svg"   alt="Instagram"></a>
-      <a href="#social" target="_blank" class="icon"><img src="/cover2creds/assets/images/tube.svg"    alt="YouTube"></a>
+  <div class="side-a">
+    <h2>This will be a BIG OLD HONKIN COMPONENT connected to the Podcast API</h2>
+  </div>
+  <div class="side-b">
+    <div class="spacer">
+      <a href="#api">a title</a>
+      <a href="#api">another title</a>
+      <a href="#api">another other title</a>
+      <a href="#api">a title</a>
+      <a href="#api">another title</a>
+      <a href="#api">another other title</a>
+      <a href="#api">a title</a>
+      <a href="#api">another title</a>
+      <a href="#api">another other title</a>
+      <a href="#api">a title</a>
+      <a href="#api">another title</a>
+      <a href="#api">another other title</a>
+      <a href="#api">a title</a>
+      <a href="#api">another title</a>
+      <a href="#api">another other title</a>
     </div>
   </div>
-
-  {% include about.html %}
 </section>
-<section>
-  {% include adina.html %}
-  {% include ian.html %}
+<section class="about">
+  <div class="medium-site-container">
+    <div class="title-container">
+      <h2 class="green-title">About</h2>
+      <div class="social">
+        <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/patreon.svg" alt="Patreon"></a>
+        <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/face.svg"    alt="Facebook"></a>
+        <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/twitter.svg"   alt="Twitter"></a>
+        <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/insta.svg"   alt="Instagram"></a>
+        <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/tube.svg"    alt="YouTube"></a>
+      </div>
+    </div>
+    {% include about.html %}
+  </div>
 </section>
-<section>{% include patreon.html %}</section>
+<section class="people">
+  <div class="medium-site-container">
+    <div class="adina-flex">
+      <div class="images">
+        <img class="object" src="{{ site.baseurl }}/assets/images/book.svg" alt="avid reader">
+        <img class="person rellax" src="{{ site.baseurl }}/assets/images/adina.svg" alt="Adina Hilton" data-rellax-speed="1" data-rellax-percentage="0.5">
+      </div>
+      <div class="text-flex">
+        <h2 class="purple-title">Adina Hilton</h2>
+        {% include adina.html %}
+      </div>
+    </div>
+    <div class="ian-flex">
+      <div class="images">
+        <img class="object" src="{{ site.baseurl }}/assets/images/reel.svg" alt="movie buff">
+        <img class="person rellax" src="{{ site.baseurl }}/assets/images/ian.svg" alt="Ian George" data-rellax-speed="1" data-rellax-percentage="0.3">
+      </div>
+      <div class="text-flex">
+        <h2 class="purple-title">Ian George</h2>
+        {% include ian.html %}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cred-heads">
+  <div class="medium-site-container">
+    <h2 class="green-title">On Patreon</h2>
+    <div class="cred-head-flex">
+      {% include patreon.html %}
+      <img class="rellax" src="{{ site.baseurl }}/assets/images/credhed.svg" alt="Become a Cred Head!" data-rellax-speed="1" data-rellax-percentage="0.5">
+    </div>
+  </div>
+</section>
 <footer>
-  {% include footer.html %}
+  <img class="ft-logo" src="{{ site.baseurl }}/assets/images/logo.svg" alt="">
+  <div class="social">
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/patreon.svg" alt="Patreon"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/face.svg"    alt="Facebook"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/twitter.svg"   alt="Twitter"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/insta.svg"   alt="Instagram"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/tube.svg"    alt="YouTube"></a>
+  </div>
 </footer>
