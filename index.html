@@ -24,28 +24,32 @@ title: Cover to Credits
 </section>
 <section class="podcast">
   <div class="side-a">
-    <h2>This will be a BIG OLD HONKIN COMPONENT connected to the Podcast API</h2>
+    <img src="{{ site.baseurl }}/assets/images/new_pod.png" alt="new pod banner" class="new-sticker active">
+    <div class="img-box">
+      <img src="" alt="This pod's poster" class="poster">
+    </div>
+    <div class="below-image-flex">
+      <div class="buttons">
+        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Play this Podcast" id="play" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Pause this Podcast" id="pause" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonDownload.svg" alt="Download this Podcast" id="download" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonShare.svg" alt="Share this Podcast" id="share" class="button">
+      </div>
+      <div class="text-area">
+        <h2 class="title"></h2>
+        <h3 class="date"></h3>
+        <div class="description"></div>
+      </div>
+    </div>
   </div>
-  <div class="side-b">
-    <div class="spacer">
-      <a href="#api">a title</a>
-      <a href="#api">another title</a>
-      <a href="#api">another other title</a>
-      <a href="#api">a title</a>
-      <a href="#api">another title</a>
-      <a href="#api">another other title</a>
-      <a href="#api">a title</a>
-      <a href="#api">another title</a>
-      <a href="#api">another other title</a>
-      <a href="#api">a title</a>
-      <a href="#api">another title</a>
-      <a href="#api">another other title</a>
-      <a href="#api">a title</a>
-      <a href="#api">another title</a>
-      <a href="#api">another other title</a>
+  <div class="side-b-wrapper">
+    <div class="side-b">
+      <div class="spacer"></div>
     </div>
   </div>
 </section>
+<iframe title="Cover to Credits" id="multi_iframe" src="https://www.podbean.com/media/player/multi?playlist=http%3A%2F%2Fplaylist.podbean.com%2F1712774%2Fplaylist_multi.xml&vjs=1&kdsowie31j4k1jlf913=eb28e8c9d2593e98bd3fede89112c060aa9d3bad" frameborder="0" scrolling="no" width="100%" height="432" allowfullscreen=""></iframe>
+
 <section class="about">
   <div class="medium-site-container">
     <div class="title-container">
@@ -104,3 +108,5 @@ title: Cover to Credits
     <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/tube.svg"    alt="YouTube"></a>
   </div>
 </footer>
+
+

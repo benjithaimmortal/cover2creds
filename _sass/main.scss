@@ -19,7 +19,7 @@ $white:          #fff;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 25px;
+    line-height: normal;
     letter-spacing: normal;
     color: #444444;
 }
@@ -51,6 +51,9 @@ a:link, a:visited, a:active {
 }
 a:hover {
     text-decoration: underline;
+}
+.button {
+    cursor: pointer;
 }
 
 // components
@@ -191,35 +194,119 @@ nav {
 }
 .podcast {
     margin: 200px auto 0;
-    height: 540px;
+    height: 600px;
     width: 1000px;
     max-width: 90%;
     display: flex;
     flex-wrap: nowrap;
     .side-a {
+        overflow: hidden;
+        position: relative;
         border-bottom-left-radius: 20px;
         border-top-left-radius: 20px;
         background: $purple;
-        color: $white;
         width: calc(100% - 400px);
         max-width: 100%;
-        padding: 20px;
+        // padding: 20px;
+        * {
+            color: $white;
+        }
     }
-    .side-b {
+    .new-sticker {
+        position: absolute;
+        top: 0; left: 0;
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    .img-box {
+        width: 100%;
+        height: 243px;
+        overflow: hidden;
+    }
+    .poster {
+        width: 100%;
+        height: auto;
+    }
+    .below-image-flex {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 30px 0 40px;
+    }
+    #play {
+        margin-bottom: 60px;
+        &.playing { display: none; }
+        &.paused { display: block; }
+    }
+    #pause {
+        margin-bottom: 60px;
+        display: none;
+        &.playing { display: block; }
+        &.paused { display: none; }
+    }
+    #download {
+        margin-bottom: 25px;
+    }
+    .text-area {
+        margin-top: 40px;
+        margin-right: 90px;
+    }
+    .title {
+        font-family: Aleo;
+        font-size: 28px;
+        line-height: 1.2;
+        color: #ffffff;
+        padding-bottom: 7px;
+    }
+    .date {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: normal;
+        color: #ffffff;
+        padding-bottom: 28px;
+    }
+    .description {
+        font-size: 16px;
+        line-height: 1.4;
+        color: #ffffff;
+    }
+    .side-b-wrapper {
         background: $lightest-green;
         color: $gray;
         width: 400px;
         min-width: 200px;
-        height: 100%;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .side-b {
+        height: calc(100% - 30px);
         overflow: auto;
-        .spacer { margin: 15px 25px; }
-        a {
-            display: block;
+        margin: 15px;
+        &::-webkit-scrollbar {
+            width: 10px;
+            background: #c3e8e9;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #00abaf;
+            border-radius: 15px;
+        }
+        .spacer { margin-right: 25px; }
+        div {
+            font-size: 15px; // because of harry pothead
+            cursor: pointer;
             padding: 15px 10px 20px;
             border-bottom: solid 1px $light-gray;
             &:hover {
                 text-decoration: none;
 
+            }
+            &:first-of-type {
+                margin-top: 0;
             }
             &:last-of-type {
                 border-bottom: none;
@@ -242,6 +329,7 @@ nav {
     }
     p {
         margin-top: 45px;
+        line-height: 1.5;
     }
 }
 .people {
@@ -297,7 +385,10 @@ nav {
             width: 80%;
         }
     }
-    p { margin-top: 45px; }
+    p {
+        margin-top: 45px;
+        line-height: 1.5;
+    }
 }
 .cred-heads {
     padding-top: 150px;
@@ -309,6 +400,7 @@ nav {
         margin-top: 45px;
         margin-right: 45px;
         width: 450px;
+        line-height: 1.5;
     }
 }
 
@@ -327,4 +419,8 @@ footer {
     .icon {
         filter: grayscale(1);
     }
+}
+
+#multi_iframe {
+    // display: none;
 }
