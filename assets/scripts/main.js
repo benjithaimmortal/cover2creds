@@ -49,17 +49,18 @@ function log(thing) {
 }
 
 function changeEverything(json, selected) {
-  var poster = document.querySelector(".side-a .poster");
-  var title = document.querySelector(".side-a .title");
-  var date = document.querySelector(".side-a .date");
+  var poster      = document.querySelector(".side-a .poster");
+  var title       = document.querySelector(".side-a .title");
+  var date        = document.querySelector(".side-a .date");
   var description = document.querySelector(".side-a .description");
-  poster.src = json['poster'];
+  poster.src      = json['poster'];
   title.innerHTML = json['name'];
-  var datarang = podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
+  var datarang    = podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
+  // sure, there's a more idiomatic way to do that, but why? check out this mess of RSS date formatting:
+  // console.log(podcastAttributes[selected].getElementsByTagName('pubDate').innerHTML);
   date.innerHTML = datarang[2] + " " + datarang[1] + ", " + datarang[3];
   description.innerHTML = podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
 
-  console.log(podcastAttributes[selected].getElementsByTagName('pubDate').innerHTML);
   // console.log(json);
 }
 
@@ -119,9 +120,7 @@ widget.bind("PB.Widget.Events.READY", function(){
       document.getElementById("play").classList.add("paused");
     });
     
-
-    // add a title
-    console.log("poot");
+    // console.log("poot");
   });
 
 
