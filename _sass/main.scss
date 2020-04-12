@@ -454,14 +454,15 @@ footer {
 }
 
 .player {
-    min-height: auto;
+    transform: translateY(150px);
+    transition: ease transform .2s;
     position: fixed;
     z-index: 99;
-    padding: 10px 15px 15px;
+    padding: 10px 15px 0;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 130px;
+    min-height: 110px;
     background: #3d1f6b;
     #progressbar {
         position: relative;
@@ -477,19 +478,50 @@ footer {
         }
     }
     .times {
-        padding: 0 10px;
-    }
-    .words-n-buttons {
-        padding: 0 10px;
+        padding: 0 15px;
         display: flex;
         flex-wrap: nowrap;
-        justify-content: center;
-        .title {
-            justify-self: flex-start;
-            font-size: 27px;
+        justify-content: space-between;
+        #starttime, #endtime {
+            font-size: 18px;
             font-weight: 500;
+            color: #fff;
         }
     }
+    .words-n-buttons {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding: 0 15px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+        #title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            max-width: 35%;
+        }
+        .buttons {
+            position: absolute;
+            display: flex;
+            flex-wrap: nowrap;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #back30, #play, #pause {
+            margin-right: 20px;
+        }
+        #pause {
+            display: none;
+            &.playing { display: block; }
+        }
+        #play.playing { display: none; }
+    }
+}
+.player.playing {
+    transform: none;
 }
 
 
