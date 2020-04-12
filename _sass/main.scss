@@ -194,7 +194,7 @@ nav {
 }
 .podcast {
     margin: 200px auto 0;
-    height: 600px;
+    // min-height: min-content;
     width: 1000px;
     max-width: 90%;
     display: flex;
@@ -205,7 +205,7 @@ nav {
         border-bottom-left-radius: 20px;
         border-top-left-radius: 20px;
         background: $purple;
-        width: calc(100% - 400px);
+        width: calc(100% - 360px);
         max-width: 100%;
         // padding: 20px;
         * {
@@ -222,43 +222,69 @@ nav {
     }
     .img-box {
         width: 100%;
-        height: 243px;
         overflow: hidden;
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            padding-top: calc(520 / 1280 * 100%);
+        }
     }
     .poster {
         width: 100%;
         height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
     }
-    .below-image-flex {
+    .top {
         display: flex;
-        flex-wrap: nowrap;
+        align-items: flex-start;
+        margin-left: 40px;
+        margin-top: 50px;
+        .buttons {
+            margin-right: 25px;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 60px;
+        }
+        .text {
+            margin-right: 90px;
+        }
     }
-    .buttons {
+    .bottom {
         display: flex;
-        flex-direction: column;
-        padding: 40px 30px 0 40px;
+        align-items: flex-start;
+        margin-left: 40px;
+        margin-bottom: 100px;
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 60px;
+            margin-right: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .description {
+            margin-right: 90px;
+        }
     }
-    #play {
-        margin-bottom: 60px;
+    #playWidget {
         &.playing { display: none; }
-        &.paused { display: block; }
     }
-    #pause {
-        margin-bottom: 60px;
+    #pauseWidget {
         display: none;
         &.playing { display: block; }
-        &.paused { display: none; }
     }
-    #download {
+    #downloadWidget {
         margin-bottom: 25px;
-    }
-    .text-area {
-        margin-top: 40px;
-        margin-right: 90px;
     }
     .title {
         font-family: Aleo;
-        font-size: 28px;
+        font-size: 32px;
         line-height: 1.2;
         color: #ffffff;
         padding-bottom: 7px;
@@ -276,6 +302,7 @@ nav {
         color: #ffffff;
     }
     .side-b-wrapper {
+        position: relative;
         background: $lightest-green;
         color: $gray;
         width: 400px;
@@ -284,7 +311,11 @@ nav {
         border-bottom-right-radius: 20px;
     }
     .side-b {
-        height: calc(100% - 30px);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         overflow: auto;
         margin: 15px;
         &::-webkit-scrollbar {
@@ -297,7 +328,8 @@ nav {
         }
         .spacer { margin-right: 25px; }
         div {
-            font-size: 15px; // because of harry pothead
+            // because of harry pothead, font size is not huge
+            font-size: 15px; 
             cursor: pointer;
             padding: 15px 10px 20px;
             border-bottom: solid 1px $light-gray;
@@ -421,6 +453,48 @@ footer {
     }
 }
 
+.player {
+    min-height: auto;
+    position: fixed;
+    z-index: 99;
+    padding: 10px 15px 15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 130px;
+    background: #3d1f6b;
+    #progressbar {
+        position: relative;
+        height: 5px;
+        width: calc(100% - 30px);
+        background-color: #5a3591;
+        margin: 15px;
+        #complete {
+            position: absolute;
+            left: 0;
+            height: 5px;
+            background-color: #fff000;
+        }
+    }
+    .times {
+        padding: 0 10px;
+    }
+    .words-n-buttons {
+        padding: 0 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        .title {
+            justify-self: flex-start;
+            font-size: 27px;
+            font-weight: 500;
+        }
+    }
+}
+
+
+
+// get rid of the multi-frame
 #multi_iframe {
     display: none;
 }

@@ -28,18 +28,22 @@ title: Cover to Credits
     <div class="img-box">
       <img src="" alt="This pod's poster" class="poster">
     </div>
-    <div class="below-image-flex">
+    <div class="top">
       <div class="buttons">
-        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Play this Podcast" id="play" class="button">
-        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Pause this Podcast" id="pause" class="button">
-        <img src="{{ site.baseurl }}/assets/images/buttonDownload.svg" alt="Download this Podcast" id="download" class="button">
-        <img src="{{ site.baseurl }}/assets/images/buttonShare.svg" alt="Share this Podcast" id="share" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Play this Podcast" id="playWidget" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Pause this Podcast" id="pauseWidget" class="button">
       </div>
-      <div class="text-area">
+      <div class="text">
         <h2 class="title"></h2>
         <h3 class="date"></h3>
-        <div class="description"></div>
       </div>
+    </div>
+    <div class="bottom">
+      <div class="buttons">
+        <img src="{{ site.baseurl }}/assets/images/buttonDownload.svg" alt="Download this Podcast" id="downloadWidget" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonShare.svg" alt="Share this Podcast" id="shareWidget" class="button">
+      </div>
+      <div class="description"></div>
     </div>
   </div>
   <div class="side-b-wrapper">
@@ -109,4 +113,22 @@ title: Cover to Credits
   </div>
 </footer>
 
+<section class="player">
+  <div id="progressbar">
+    <div id="complete"></div>
+  </div>
+  <div class="times">
+    <div id="starttime"></div>
+    <div id="endtime"></div>
+  </div>
+  <div class="words-n-buttons">
+    <div id="title"></div>
+    <div class="buttons">
+      <img src="{{ site.baseurl }}/assets/images/30_sec_back.svg" alt="navigate back 30 seconds" id="back30">
+      <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="play the pod" id="play">
+      <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="pause the pod" id="pause">
+      <img src="{{ site.baseurl }}/assets/images/30_sec_forward.svg" alt="navigate forward 30 seconds" id="fwd30">
+    </div>
+  </div>
+</section>
 

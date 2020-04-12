@@ -14,10 +14,9 @@ xhr.onreadystatechange = function() {
   if (xhr.readyState == 4) {
     if (xhr.status == 200) {
       if (xhr.responseText != null) {
-        // var parser = new DOMParser();
-        // var xml = parser.parseFromString(xhr.responseXML, "text/xml");
         podcastAttributes = xhr.responseXML.getElementsByTagName('item');
-        console.log(podcastAttributes[0]);
+
+        // console.log(podcastAttributes[0]);
       } else {
         alert("Failed to receive RSS file from the server - file not found.");
         return false;
@@ -35,18 +34,13 @@ xhr.send(null);
 
 
 
-
-
 // and now for something completely different: an API integration
 var iframeElement = document.querySelector('#multi_iframe');
+// console.log(iframeElement);
 
-console.log(iframeElement);
 var widget = new PB(iframeElement);
-console.log(widget);
+// console.log(widget);
 
-function log(thing) {
-  console.log(thing);
-}
 
 function changeEverything(json, selected) {
   var poster      = document.querySelector(".side-a .poster");
@@ -54,16 +48,34 @@ function changeEverything(json, selected) {
   var date        = document.querySelector(".side-a .date");
   var description = document.querySelector(".side-a .description");
   poster.src      = json['poster'];
-  title.innerHTML = json['name'];
+  var selectedObject = document.querySelector(".side-b .episode[data-count='" + selected + "']");
+  title.innerHTML = selectedObject.innerHTML;
+  console.log(selectedObject);
+
   var datarang    = podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
   // sure, there's a more idiomatic way to do that, but why? check out this mess of RSS date formatting:
   // console.log(podcastAttributes[selected].getElementsByTagName('pubDate').innerHTML);
   date.innerHTML = datarang[2] + " " + datarang[1] + ", " + datarang[3];
   description.innerHTML = podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
 
-  // console.log(json);
+  console.log(json);
 }
 
+function playTheWidget() {
+  // invoke the changing of titles and buttons and everything
+  widget.play();
+  console.log("play button clicked");
+  document.getElementById("pauseWidget").classList.add("playing");
+  document.getElementById("playWidget").classList.add("playing");
+}
+
+function pauseTheWidget() {
+  // invoke the changing of titles and buttons and everything
+  widget.pause();
+  console.log("pause clicked");
+  document.getElementById("pauseWidget").classList.remove("playing");
+  document.getElementById("playWidget").classList.remove("playing");
+}
 
 widget.bind("PB.Widget.Events.READY", function(){
   widget.getSources(function(result){
@@ -72,10 +84,13 @@ widget.bind("PB.Widget.Events.READY", function(){
     var selected = 0;
     var box = document.querySelector(".spacer");
     result.forEach( source => {
+      var name = source['name'];
+      delete source['name'];
+
+      box.innerHTML = box.innerHTML + "<div class='episode' data-count='" + count + "' data-json='" + JSON.stringify(source) + "'>" + name + "</div>";
+      
       // if this is the first item, send it up to change everything and 'load' the stuff
       count === 0 ? changeEverything(source, selected) : false;
-
-      box.innerHTML = box.innerHTML + "<div class='episode' data-count='" + count + "' data-json='" + JSON.stringify(source) + "'>" + source['name'] + "</div>";
       count++;
     });
     // // what if you run out of things to do? make more things to do
@@ -86,6 +101,7 @@ widget.bind("PB.Widget.Events.READY", function(){
     var episodes = document.querySelectorAll(".episode");
     episodes.forEach( episode => {
       episode.addEventListener("click", function(){
+        widget.pause();
         selected = this.dataset.count;
         var sticker = document.querySelector('.new-sticker');
         selected === '0' ? sticker.classList.add("active") : sticker.classList.remove("active");
@@ -98,34 +114,22 @@ widget.bind("PB.Widget.Events.READY", function(){
       });
     });
     
-    // listen for clicks on side-a
-    var play = document.getElementById("play");
-    play.addEventListener("click", function(){
-      // invoke the changing of titles and buttons and everything
-      widget.play();
-      this.classList.remove("paused");
-      this.classList.add("playing");
-      document.getElementById("pause").classList.remove("plaused");
-      document.getElementById("pause").classList.add("playing");
-    });
-    
-    // listen for clicks on side-a
-    var pause = document.getElementById("pause");
-    pause.addEventListener("click", function(){
-      // invoke the changing of titles and buttons and everything
-      widget.pause();
-      this.classList.remove("playing");
-      this.classList.add("paused");
-      document.getElementById("play").classList.remove("playing");
-      document.getElementById("play").classList.add("paused");
-    });
-    
     // console.log("poot");
   });
 
+  // listen for clicks on side-a
+  var playWidget = document.getElementById("playWidget");
+  playWidget.addEventListener("click", playTheWidget);
 
+  var play = document.getElementById("play");
+  play.addEventListener("click", playTheWidget);
 
+  // listen for clicks on side-a
+  var pauseWidget = document.getElementById("pauseWidget");
+  pauseWidget.addEventListener("click", pauseTheWidget);
 
+  var pause = document.getElementById("pause");
+  pause.addEventListener("click", pauseTheWidget);
 
 });
 
