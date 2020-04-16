@@ -216,6 +216,7 @@ nav {
         position: absolute;
         top: 0; left: 0;
         display: none;
+        z-index: 30;
         &.active {
             display: block;
         }

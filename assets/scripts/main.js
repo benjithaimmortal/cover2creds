@@ -120,8 +120,22 @@ function downloadThePod() {
   window.open(download.getAttribute("download"), '_blank');
 }
 
+var simulateClick = function (elem) {
+	// Create our event (with options)
+	var evt = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	});
+	// If cancelled, don't dispatch our event
+	var canceled = !elem.dispatchEvent(evt);
+};
+
 widget.bind("PB.Widget.Events.READY", function(){
+
+  simulateClick(iframeElement);
   widget.getSources(function(result){
+    console.log(result);
     // add the source names to side-b
     var count = 0;
     var selected = 0;
