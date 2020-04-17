@@ -1,6 +1,16 @@
 var rellax = new Rellax('.rellax');
 
 
+var simulateClick = function (elem) {
+	// Create our event (with options)
+	var evt = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	});
+	// If cancelled, don't dispatch our event
+	var canceled = !elem.dispatchEvent(evt);
+};
 
 
 // AJAX BLOODMETAL DETHKLOK HOMAGE TO ANCIENT XMLHTTPREQUESTS
@@ -93,6 +103,8 @@ function changeEverything(json, selected) {
 }
 
 function playTheWidget() {
+
+  simulateClick(iframeElement);
   // invoke the changing of titles and buttons and everything
   widget.play();
 
@@ -120,16 +132,6 @@ function downloadThePod() {
   window.open(download.getAttribute("download"), '_blank');
 }
 
-var simulateClick = function (elem) {
-	// Create our event (with options)
-	var evt = new MouseEvent('click', {
-		bubbles: true,
-		cancelable: true,
-		view: window
-	});
-	// If cancelled, don't dispatch our event
-	var canceled = !elem.dispatchEvent(evt);
-};
 
 widget.bind("PB.Widget.Events.READY", function(){
 
