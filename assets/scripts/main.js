@@ -55,7 +55,6 @@ var widget = new PB(iframeElement);
 function changeEverything(json, selected) {
   var poster      = document.querySelector(".side-a .poster");
   var title       = document.querySelector(".side-a .title");
-  var playerTitle = document.getElementById("title");
   var date        = document.querySelector(".side-a .date");
   var description = document.querySelector(".side-a .description");
   var download    = document.getElementById("downloadWidget");
@@ -65,7 +64,7 @@ function changeEverything(json, selected) {
   poster.src      = json['poster'];
   
   // the episode title
-  title.innerHTML = playerTitle.innerHTML = selectedObject.innerHTML;
+  title.innerHTML = selectedObject.innerHTML;
   
   // console.log(selectedObject);
   
@@ -81,6 +80,16 @@ function changeEverything(json, selected) {
   // the download link
   download.setAttribute("download", json['sources'][0]['src']);
   
+}
+
+function setPlayer() {
+  // player title
+  var selectedObject = document.querySelector(".side-b .episode.selected");
+  var json = JSON.parse(selectedObject.dataset.json);
+  var selected = selectedObject.dataset.count;
+  var playerTitle = document.getElementById("title");
+  playerTitle.innerHTML = selectedObject.innerHTML;
+
   // pod duration information
   var duration = json['duration'];
   var endtime = document.getElementById('endtime');
@@ -105,7 +114,11 @@ function changeEverything(json, selected) {
     seconds = '0' + Math.floor(duration % 60);
   }
   endtime.innerHTML = hours + minutes + seconds;
+
+  // skip to track number awesome
+  widget.skip(selected);
 }
+
 
 function playTheWidget() {
 
@@ -261,6 +274,9 @@ widget.bind("PB.Widget.Events.READY", function(){
       
       // if this is the first item, send it up to change everything and 'load' the stuff
       count === 0 ? changeEverything(source, selected) : false;
+      document.querySelector('.episode').classList.add('selected');
+      count === 0 ? setPlayer() : false;
+
       count++;
     });
     // // what if you run out of things to do? make more things to do
@@ -273,6 +289,11 @@ widget.bind("PB.Widget.Events.READY", function(){
       episode.addEventListener("click", function(){
         // widget.pause();
         selected = this.dataset.count;
+        var els = document.querySelectorAll('.episode');
+        for (var i = 0; i < els.length; i++) {
+          els[i].classList.remove('selected');
+        }
+        this.classList.add('selected');
         var sticker = document.querySelector('.new-sticker');
         selected === '0' ? sticker.classList.add("active") : sticker.classList.remove("active");
 
@@ -284,10 +305,6 @@ widget.bind("PB.Widget.Events.READY", function(){
         top.scrollIntoView(true, {behavior: "smooth"});
 
         closeThings();
-
-        // skip to track number awesome
-        // don't do this here, do this on navigator play button click
-        // widget.skip(selected);
       });
     });
     
@@ -300,6 +317,8 @@ widget.bind("PB.Widget.Events.READY", function(){
 
   var playerOpen = document.getElementById("playerOpen");
   playerOpen.addEventListener('click', function(){
+    setPlayer();
+
     document.querySelector(".player").classList.add("playing");
     document.querySelector(".mobile-player").classList.add("playing");
     document.getElementById('mobilex').classList.add('open');
