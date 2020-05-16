@@ -734,6 +734,12 @@ footer {
 }
 
 @media (max-width: 650px) {
+    .title-blocks {
+        .logo {
+            top: 55%;
+            transform: translate(-50%, -55%);
+        }
+    }
     .podcast {
         .top, .bottom {
             margin-left: 5%;
@@ -794,10 +800,6 @@ footer {
             .reel {
                 margin-left: 45px;
             }
-        }
-        .logo {
-            top: 55%;
-            transform: translate(-50%, -55%);
         }
         .right-llax {
             .book { right: 50px; }
