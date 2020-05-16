@@ -273,6 +273,12 @@ nav {
             margin-right: 90px;
         }
     }
+    #playerOpen {
+        color: $yellow;
+        border: $yellow solid 3px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
     #playWidget {
         &.playing { display: none; }
     }
@@ -301,6 +307,44 @@ nav {
         font-size: 16px;
         line-height: 1.4;
         color: #ffffff;
+    }
+    .more-episodes {
+        cursor: pointer;
+        display: none;
+        width: 100%;
+        background-color: $green;
+        justify-content: flex-start;
+        height: 30px;
+        padding: 25px 0 40px;
+        .minus { display: none; }
+        .plus, .minus {
+            min-width: 60px;
+            margin-left: 40px;
+            margin-right: 25px;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 40px;
+            letter-spacing: normal;
+            color: #ffffff;
+            height: 40px;
+        }
+        .text {
+            font-size: 25px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 40px;
+            letter-spacing: normal;
+            color: #ffffff;
+            height: 40px;
+        }
+        &.active {
+            .minus { display: inline; }
+            .plus { display: none; }
+        }
     }
     .side-b-wrapper {
         position: relative;
@@ -363,12 +407,16 @@ nav {
     p {
         margin-top: 45px;
         line-height: 1.5;
+        a {
+            font-weight: bold;
+        }
     }
 }
 .people {
     .adina-flex, .ian-flex {
         margin-top: 150px;
         display: flex;
+        align-items: center;
         flex-wrap: nowrap;
         justify-content: center;
     }
@@ -421,6 +469,19 @@ nav {
     p {
         margin-top: 45px;
         line-height: 1.5;
+        position: relative;
+        a {
+            position: absolute;
+            bottom: -50px;
+            left: 0px;
+            font-size: 20px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $green;
+        }
     }
 }
 .cred-heads {
@@ -434,6 +495,12 @@ nav {
         margin-right: 45px;
         width: 450px;
         line-height: 1.5;
+    }
+    .patreon-button {
+        img {
+            width: 200px;
+            padding-top: 25px;
+        }
     }
 }
 
@@ -450,7 +517,10 @@ footer {
         filter: brightness(100) contrast(1);
     }
     .icon {
-        filter: grayscale(1);
+        // filter: grayscale(1);
+    }
+    &.playing {
+        margin-bottom: 124px;
     }
 }
 
@@ -525,9 +595,158 @@ footer {
     transform: none;
 }
 
-
-
 // get rid of the multi-frame
-#multi_iframe {
+.mobile-player {
     display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 98;
+    max-height: 0;
+    overflow: hidden;
+    transition: ease max-height .5s;
+    #multi_iframe {
+        // beep boop
+        width: 100%;
+        height: 100%;
+    }
+    &.playing {
+        max-height: 10000px;
+        transition-duration: .2s;
+    }
+}
+.yt-area {
+    margin: 0 auto;
+}
+#ytbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 230px;
+    height: 64px;
+    background-color: $yellow;
+    .arrow {
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 18px solid $purple;
+    }
+    .text {
+        margin-left: 10px;
+        font-size: 25px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $purple;
+    }
+}
+#ytplayer {
+    position: fixed;
+    top: 0;
+    max-height: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    transition: ease max-height .5s;
+    z-index: 98;
+    &.open {
+        max-height: 1000px;
+        transition-duration: .2s;
+    }
+}
+
+.ex {
+    position: fixed;
+    top: 10px;
+    right: 0px;
+    height: 40px;
+    width: 40px;
+    z-index: 99;
+    padding: 30px;
+    opacity: 0;
+    transition: ease opacity .5s;
+    cursor: pointer;
+    span {
+        position: absolute;
+        height: 6px;
+        width: 40px;
+        background-color: $yellow;
+        transition: ease transform .5s .5s;
+    }
+    &.open {
+        opacity: 1;
+        transition-duration: .2s;
+        span:nth-child(2n-1) {
+            transform: rotate(-45deg);
+        }
+        span:nth-child(2n) {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .podcast {
+        max-width: 100%;
+        .side-a, .side-b-wrapper {
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+            border-top-left-radius: unset;
+            border-top-right-radius: unset;
+        }
+    }
+    .about {
+        .title-container {
+            flex-direction: column;
+            .social {
+                padding: unset;
+                border: unset;
+            }
+        }
+        .green-title {
+            margin-bottom: 75px;
+        }
+    }
+}
+@media (max-width: 800px) {
+    .podcast {
+        flex-direction: column;
+        .side-a, .side-b-wrapper {
+            width: 100%;
+        }
+        .more-episodes {
+            display: flex;
+        }
+        .side-b-wrapper.mobile-open {
+            height: 50vh;
+        }
+    }
+    .cred-heads {
+        .cred-head-flex img { display: none; }
+    }
+}
+
+@media (max-width: 650px) {
+    .people {
+        .adina-flex, .ian-flex {
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+    }
+    .people .ian-flex .text-flex {
+        padding-left: unset;
+        align-self: flex-start;
+    }
+    .player {
+        display: none;
+    }
+    .mobile-player {
+        display: block;
+    }
 }

@@ -22,16 +22,30 @@ title: Cover to Credits
     </div>
   </div>
 </section>
+<section class='yt-area'>
+  <div id='ytbutton' class="rellax" data-rellax-speed="-1.75">
+    <div class='arrow'></div>
+    <div class='text'>Watch Intro</div>
+  </div>
+  <div id='ytex' class='ex'>
+    <span></span>
+    <span></span>
+  </div>
+  <iframe id="ytplayer" type="text/html"
+  src="https://www.youtube.com/embed/IHSDDIY2HnU?autoplay=0&origin=http://github.com"
+  frameborder="0"></iframe>
+</section>
 <section class="podcast">
-  <div class="side-a">
+  <div class="side-a" id='podtop'>
     <img src="{{ site.baseurl }}/assets/images/new_pod.png" alt="new pod banner" class="new-sticker active">
     <div class="img-box">
       <img src="" alt="This pod's poster" class="poster">
     </div>
     <div class="top">
       <div class="buttons">
-        <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Play this Podcast" id="playWidget" class="button">
-        <img src="{{ site.baseurl }}/assets/images/buttonPause.svg" alt="Pause this Podcast" id="pauseWidget" class="button">
+        <div class='opener' id='playerOpen'>Open the Player</div>
+        <!-- <img src="{{ site.baseurl }}/assets/images/buttonPlay.svg" alt="Play this Podcast" id="playWidget" class="button">
+        <img src="{{ site.baseurl }}/assets/images/buttonPause.svg" alt="Pause this Podcast" id="pauseWidget" class="button"> -->
       </div>
       <div class="text">
         <h2 class="title"></h2>
@@ -46,13 +60,25 @@ title: Cover to Credits
       <div class="description"></div>
     </div>
   </div>
+  <div class='more-episodes' id='moreps'>
+    <span class='plus'>+</span>
+    <span class='minus'>-</span>
+    <span class='text'>More Episodes</span>
+  </div>
   <div class="side-b-wrapper">
     <div class="side-b">
       <div class="spacer"></div>
     </div>
   </div>
 </section>
-<iframe title="Cover to Credits" id="multi_iframe" src="https://www.podbean.com/media/player/multi?playlist=http%3A%2F%2Fplaylist.podbean.com%2F1712774%2Fplaylist_multi.xml&vjs=1&kdsowie31j4k1jlf913=eb28e8c9d2593e98bd3fede89112c060aa9d3bad" frameborder="0" scrolling="no" width="100%" height="432" allowfullscreen=""></iframe>
+
+<div class="mobile-player">
+  <div id='mobilex' class='ex'>
+    <span></span>
+    <span></span>
+  </div>
+  <iframe title="Cover to Credits" id="multi_iframe" src="https://www.podbean.com/media/player/multi?playlist=http%3A%2F%2Fplaylist.podbean.com%2F1712774%2Fplaylist_multi.xml&vjs=1&kdsowie31j4k1jlf913=eb28e8c9d2593e98bd3fede89112c060aa9d3bad&skin=17&episode_list_bg=%23ffffff&bg_left=%235a3591&bg_mid=%235a3591&bg_right=%235a3591&podcast_title_color=%23ffffff&episode_title_color=%23ffffff" frameborder="0" scrolling="no" allowfullscreen="yes"></iframe>
+</div>
 
 <section class="about">
   <div class="medium-site-container">
@@ -100,16 +126,17 @@ title: Cover to Credits
       {% include patreon.html %}
       <img class="rellax" src="{{ site.baseurl }}/assets/images/credhed.svg" alt="Become a Cred Head!" data-rellax-speed="1" data-rellax-percentage="0.5">
     </div>
+    <a class="patreon-button" href="#become" target="_blank" rel="noopener noreferrer"><img src="{{ site.baseurl }}/assets/images/patreon_button.png" alt="Become a Patron"></a>
   </div>
 </section>
 <footer>
   <img class="ft-logo" src="{{ site.baseurl }}/assets/images/logo.svg" alt="">
   <div class="social">
-    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/patreon.svg" alt="Patreon"></a>
-    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/face.svg"    alt="Facebook"></a>
-    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/twitter.svg"   alt="Twitter"></a>
-    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/insta.svg"   alt="Instagram"></a>
-    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/tube.svg"    alt="YouTube"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/footer-patreon.svg" alt="Patreon"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/footer-facebook.svg"    alt="Facebook"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/footer-twitter.svg"   alt="Twitter"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/footer-instagram.svg"   alt="Instagram"></a>
+    <a href="#social" target="_blank" class="icon"><img src="{{ site.baseurl }}/assets/images/footer-youtube.svg"    alt="YouTube"></a>
   </div>
 </footer>
 

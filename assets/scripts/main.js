@@ -1,16 +1,16 @@
 var rellax = new Rellax('.rellax');
 
 
-var simulateClick = function (elem) {
-	// Create our event (with options)
-	var evt = new MouseEvent('click', {
-		bubbles: true,
-		cancelable: true,
-		view: window
-	});
-	// If cancelled, don't dispatch our event
-	var canceled = !elem.dispatchEvent(evt);
-};
+// var simulateClick = function (elem) {
+// 	// Create our event (with options)
+// 	var evt = new MouseEvent('click', {
+// 		bubbles: true,
+// 		cancelable: true,
+// 		view: window
+// 	});
+// 	// If cancelled, don't dispatch our event
+// 	var canceled = !elem.dispatchEvent(evt);
+// };
 
 
 // AJAX BLOODMETAL DETHKLOK HOMAGE TO ANCIENT XMLHTTPREQUESTS
@@ -18,8 +18,8 @@ var podcastAttributes = [];
 
 var url = "https://feed.podbean.com/covertocredits/feed.xml";
 var xhr = new XMLHttpRequest();
-xhr.open("GET", url, true);
 
+xhr.open("GET", url, true);
 xhr.onreadystatechange = function() {
   if (xhr.readyState == 4) {
     if (xhr.status == 200) {
@@ -60,24 +60,29 @@ function changeEverything(json, selected) {
   var description = document.querySelector(".side-a .description");
   var download    = document.getElementById("downloadWidget");
   var selectedObject = document.querySelector(".side-b .episode[data-count='" + selected + "']");
-    
+  
+  // the mini hero image
   poster.src      = json['poster'];
   
+  // the episode title
   title.innerHTML = playerTitle.innerHTML = selectedObject.innerHTML;
   
   // console.log(selectedObject);
   
+  // the publish date
   // sure, there's a more idiomatic way to do that, but why? check out this mess of RSS date formatting:
   var datarang    = podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
   // console.log(podcastAttributes[selected].getElementsByTagName('pubDate').innerHTML);
   date.innerHTML = datarang[2] + " " + datarang[1] + ", " + datarang[3];
   
+  // the description
   description.innerHTML = podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
   
+  // the download link
   download.setAttribute("download", json['sources'][0]['src']);
   
+  // pod duration information
   var duration = json['duration'];
-  // console.log(duration);
   var endtime = document.getElementById('endtime');
   var hours, minutes, seconds;
   if (Math.floor(duration / 3600) !== 0) {
@@ -104,14 +109,14 @@ function changeEverything(json, selected) {
 
 function playTheWidget() {
 
-  simulateClick(iframeElement);
+  // simulateClick(iframeElement);
   // invoke the changing of titles and buttons and everything
   widget.play();
 
   console.log("play button clicked");
   document.querySelector(".player").classList.add("playing");
-  document.getElementById("pauseWidget").classList.add("playing");
-  document.getElementById("playWidget").classList.add("playing");
+  // document.getElementById("pauseWidget").classList.add("playing");
+  // document.getElementById("playWidget").classList.add("playing");
   document.getElementById("play").classList.add("playing");
   document.getElementById("pause").classList.add("playing");
 }
@@ -120,24 +125,130 @@ function pauseTheWidget() {
   // invoke the changing of titles and buttons and everything
   widget.pause();
   console.log("pause clicked");
-  document.getElementById("pauseWidget").classList.remove("playing");
-  document.getElementById("playWidget").classList.remove("playing");
+  // document.getElementById("pauseWidget").classList.remove("playing");
+  // document.getElementById("playWidget").classList.remove("playing");
   document.getElementById("play").classList.remove("playing");
   document.getElementById("pause").classList.remove("playing");
 }
 
 function downloadThePod() {
-  // yeah, I know, it's not downloading. It's a CORS file, can't do that.
+  var download = document.getElementById("downloadWidget");
+  url = download.getAttribute("download");
+  // var name = document.querySelector('.side-a .title').innerHTML
+
+  // fetch(url, {
+  //   mode: 'no-cors',
+  //   headers: {
+  //     'Content-Disposition': 'attachment'
+  //   } 
+  // })
+  // .then( res => res.blob() )
+  // .then( blob => {
+  //   var url = URL.createObjectURL(blob, {type:"audio/mpeg"});
+  //   var a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = name + ".mp3";
+
+  //     // Click handler that releases the object URL after the element has been clicked
+  //     // This is required for one-off downloads of the blob content
+  //     // const clickHandler = () => {
+  //     //   setTimeout(() => {
+  //     //     URL.revokeObjectURL(url);
+  //     //     this.removeEventListener('click', clickHandler);
+  //     //   }, 150);
+  //     // };
+      
+  //     // Add the click event listener on the anchor element
+  //     // Comment out this line if you don't want a one-off download of the blob content
+  //     // a.addEventListener('click', clickHandler, false);
+    
+  //   a.click();
+  // });
+
+
+
+
+  // xhr.open("GET", url, true);
+  // // xhr.setRequestHeader('Access-Control-Allow-Origin', 'podbean.com/');
+
+  // xhr.onreadystatechange = function() {
+  //   if (xhr.readyState == 4) {
+  //     if (xhr.status == 200) {
+  //       if (xhr.responseText != null) {
+  //         stuff = xhr.responseXML;
+
+  //       } else {
+  //         alert("Failed to receive RSS file from the server - file not found.");
+  //         return false;
+  //       }
+  //     } else {
+  //       alert("Error code " + xhr.status + " received: " + xhr.statusText);
+  //     }
+  //   }
+  // };
+
+  // xhr.send(null);
+
+
+  // // yeah, I know, it's not downloading. It's a CORS file, can't do that.
   var download = document.getElementById("downloadWidget");
   window.open(download.getAttribute("download"), '_blank');
 }
 
+function closeThings() {
+  // youtube
+  document.getElementById("ytplayer").classList.remove('open');
+  document.getElementById('ytex').classList.remove('open');
+
+  // expanded episodes div
+  document.querySelector('.side-b-wrapper').classList.remove('mobile-open');
+
+  // podplayer
+  document.getElementById('mobilex').classList.remove('open');
+  document.querySelector(".player").classList.remove("playing");
+  document.querySelector("footer").classList.remove("playing");
+  document.querySelector(".mobile-player").classList.remove("playing");
+}
+
+var domReady = function(callback) {
+  document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
+};
+
+domReady(function(){
+  var introButton = document.getElementById("ytbutton");
+  var youTube = document.getElementById("ytplayer");
+  var ex = document.getElementById('ytex');
+  
+  introButton.addEventListener('click', function(){
+    youTube.classList.add('open');
+    ex.classList.add('open');
+  });
+
+  document.getElementById('ytex').addEventListener('click', closeThings);
+  document.getElementById('mobilex').addEventListener('click', closeThings);
+
+  document.addEventListener('keyup', function(e){
+    if(e.key === "Escape") {
+      closeThings();
+    }
+  });
+
+  var morEps = document.getElementById("moreps");
+  morEps.addEventListener('click', function(){
+    document.querySelector('.side-b-wrapper').classList.toggle('mobile-open');
+    this.classList.toggle('active');
+  });
+});
+
+widget.bind("PB.Widget.Events.PLAY", function(){
+  widget.getCurrentSourceIndex(function(result){ console.log(result)});
+});
+
 
 widget.bind("PB.Widget.Events.READY", function(){
 
-  simulateClick(iframeElement);
+  // simulateClick(iframeElement);
   widget.getSources(function(result){
-    console.log(result);
     // add the source names to side-b
     var count = 0;
     var selected = 0;
@@ -168,26 +279,36 @@ widget.bind("PB.Widget.Events.READY", function(){
         json = JSON.parse(this.dataset.json);
         // invoke the changing of titles and buttons and everything
         changeEverything(json, selected);
+
+        var top = document.getElementById("podtop");
+        top.scrollIntoView(true);
+
+        closeThings();
+
         // skip to track number awesome
-        widget.skip(selected);
+        // don't do this here, do this on navigator play button click
+        // widget.skip(selected);
       });
     });
     
+    // var player = document.getElementById('multi_iframe');
+    // player.addEventListener("click", function(){
+    //   console.log('clicked!');
+    // });
     // console.log("poot");
   });
-// });
 
-// widget.bind("PB.Widget.Events.PLAY", function(){
-  // listen for clicks on side-a
-  var playWidget = document.getElementById("playWidget");
-  playWidget.addEventListener("click", playTheWidget);
-
+  var playerOpen = document.getElementById("playerOpen");
+  playerOpen.addEventListener('click', function(){
+    document.querySelector(".player").classList.add("playing");
+    document.querySelector(".mobile-player").classList.add("playing");
+    document.getElementById('mobilex').classList.add('open');
+    document.querySelector("footer").classList.add("playing");
+  });
+  
+  // widget.bind("PB.Widget.Events.PLAY", function(){
   var play = document.getElementById("play");
   play.addEventListener("click", playTheWidget);
-
-  // listen for clicks on side-a
-  var pauseWidget = document.getElementById("pauseWidget");
-  pauseWidget.addEventListener("click", pauseTheWidget);
 
   var pause = document.getElementById("pause");
   pause.addEventListener("click", pauseTheWidget);
@@ -240,7 +361,7 @@ widget.bind("PB.Widget.Events.PLAY_PROGRESS", function(object){
   }
   startTime.innerHTML = hours + minutes + seconds;
 
-  console.log(relativePosition);
+  // console.log(relativePosition);
   var progressBar = document.getElementById('complete');
   progressBar.style.width = (relativePosition * 100) + "%";
 });
