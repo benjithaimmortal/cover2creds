@@ -13,33 +13,35 @@ var rellax = new Rellax('.rellax');
 // };
 
 
-// AJAX BLOODMETAL DETHKLOK HOMAGE TO ANCIENT XMLHTTPREQUESTS
-var podcastAttributes = [];
+function getAttributes(){
+  var url = "https://feed.podbean.com/covertocredits/feed.xml";
+  var xhr = new XMLHttpRequest();
 
-var url = "https://feed.podbean.com/covertocredits/feed.xml";
-var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        if (xhr.responseText != null) {
+          podcastAttributes = xhr.responseXML.getElementsByTagName('item');
 
-xhr.open("GET", url, true);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState == 4) {
-    if (xhr.status == 200) {
-      if (xhr.responseText != null) {
-        podcastAttributes = xhr.responseXML.getElementsByTagName('item');
-
-        // console.log(podcastAttributes[0]);
+          // console.log(podcastAttributes[0]);
+        } else {
+          alert("Failed to receive RSS file from the server - file not found.");
+          return false;
+        }
       } else {
-        alert("Failed to receive RSS file from the server - file not found.");
-        return false;
+        alert("Error code " + xhr.status + " received: " + xhr.statusText);
       }
-    } else {
-      alert("Error code " + xhr.status + " received: " + xhr.statusText);
     }
-  }
-};
+  };
 
-xhr.send(null);
+  xhr.send(null);
+}
   
 
+// AJAX BLOODMETAL DETHKLOK HOMAGE TO ANCIENT XMLHTTPREQUESTS
+var podcastAttributes = [];
+getAttributes();
 
 
 
@@ -52,7 +54,7 @@ var widget = new PB(iframeElement);
 // console.log(widget);
 
 
-function changeEverything(json, selected) {
+async function changeEverything(json, selected) {
   var poster      = document.querySelector(".side-a .poster");
   var title       = document.querySelector(".side-a .title");
   var date        = document.querySelector(".side-a .date");
@@ -70,7 +72,10 @@ function changeEverything(json, selected) {
   
   // the publish date
   // sure, there's a more idiomatic way to do that, but why? check out this mess of RSS date formatting:
-  var datarang    = podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
+  if (!podcastAttributes.length) {
+    getAttributes();
+  }
+  var datarang    = await podcastAttributes[selected].getElementsByTagName('pubDate')[0].innerHTML.split(" ");
   // console.log(podcastAttributes[selected].getElementsByTagName('pubDate').innerHTML);
   date.innerHTML = datarang[2] + " " + datarang[1] + ", " + datarang[3];
   
