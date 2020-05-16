@@ -702,6 +702,7 @@ footer {
         }
     }
     .about {
+        padding-top: 100px;
         .title-container {
             flex-direction: column;
             .social {
@@ -733,6 +734,17 @@ footer {
 }
 
 @media (max-width: 650px) {
+    .podcast {
+        .top, .bottom {
+            margin-left: 5%;
+            .description {
+                margin-right: 5%;
+            }
+        }
+        .more-episodes .plus, .more-episodes .minus {
+            margin-left: 5%;
+        }
+    }
     .social {
         .icon {
             width: 25px;
@@ -748,13 +760,54 @@ footer {
     }
     .people .ian-flex .text-flex, .people .adina-flex .text-flex {
         padding-left: unset;
+        padding-right: unset;
         align-self: flex-start;
+        .purple-title { font-size: 40px; }
     }
     .people .adina-flex .text-flex { margin-bottom: 60px; }
+    .cred-heads p {
+        margin-right: unset;
+    }
     .player {
         display: none;
     }
     .mobile-player {
         display: block;
+    }
+}
+
+@media (max-width: 450px) {
+    nav .huge-site-container {
+        display: flex;
+        justify-content: center;
+        .patreon-button {
+            position: relative;
+            top: unset; right: unset;
+            margin-top: 20px;
+            img {width: 144px;}
+        }
+    }
+    .title-blocks {
+        padding-top: unset;
+        .left-llax {
+            .book { margin-left: 50px; }
+            .reel {
+                margin-left: 45px;
+            }
+        }
+        .logo {
+            top: 55%;
+            transform: translate(-50%, -55%);
+        }
+        .right-llax {
+            .book { right: 50px; }
+            .reel { right: 60px; }
+        }
+    }
+    .yt-area {
+        padding-top: 10vh;
+    }
+    .about {
+        padding-top: 100px;
     }
 }

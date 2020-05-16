@@ -281,7 +281,7 @@ widget.bind("PB.Widget.Events.READY", function(){
         changeEverything(json, selected);
 
         var top = document.getElementById("podtop");
-        top.scrollIntoView(true);
+        top.scrollIntoView(true, {behavior: "smooth"});
 
         closeThings();
 
