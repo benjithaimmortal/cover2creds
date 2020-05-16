@@ -80,7 +80,7 @@ async function changeEverything(json, selected) {
   date.innerHTML = datarang[2] + " " + datarang[1] + ", " + datarang[3];
   
   // the description
-  description.innerHTML = podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
+  description.innerHTML = await podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
   
   // the download link
   download.setAttribute("download", json['sources'][0]['src']);
