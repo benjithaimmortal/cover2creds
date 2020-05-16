@@ -733,16 +733,24 @@ footer {
 }
 
 @media (max-width: 650px) {
+    .social {
+        .icon {
+            width: 25px;
+            height: 25px;
+            margin-right: 30px;
+        }
+    }
     .people {
         .adina-flex, .ian-flex {
             flex-direction: column;
             justify-content: flex-start;
         }
     }
-    .people .ian-flex .text-flex {
+    .people .ian-flex .text-flex, .people .adina-flex .text-flex {
         padding-left: unset;
         align-self: flex-start;
     }
+    .people .adina-flex .text-flex { margin-bottom: 60px; }
     .player {
         display: none;
     }
