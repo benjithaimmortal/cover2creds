@@ -275,15 +275,17 @@ nav {
     }
     #playerOpen {
         color: $yellow;
-        border: $yellow solid 3px;
-        border-radius: 15px;
+        // border: $yellow solid 3px;
+        // border-radius: 15px;
         cursor: pointer;
     }
     #playWidget {
+        cursor: pointer;
         &.playing { display: none; }
     }
     #pauseWidget {
         display: none;
+        cursor: pointer;
         &.playing { display: block; }
     }
     #downloadWidget {
@@ -582,9 +584,11 @@ footer {
             transform: translateX(-50%);
         }
         #back30, #play, #pause {
+            cursor: pointer;
             margin-right: 20px;
         }
         #pause {
+            cursor: pointer;
             display: none;
             &.playing { display: block; }
         }

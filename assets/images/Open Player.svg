@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Open Player</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0002 0.8135 61.187 0.8135 61.187 62 0.0002 62"></polygon>
+    </defs>
+    <g id="Open-Player" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-5-Copy">
+            <g id="Group-4" transform="translate(0.000000, 0.186800)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-3"></g>
+                <path d="M30.5932,4.2125 C15.5992,4.2125 3.3992,16.4125 3.3992,31.4065 C3.3992,46.4005 15.5992,58.6005 30.5932,58.6005 C45.5882,58.6005 57.7872,46.4005 57.7872,31.4065 C57.7872,16.4125 45.5882,4.2125 30.5932,4.2125 M30.5932,62.0005 C13.7242,62.0005 0.0002,48.2755 0.0002,31.4065 C0.0002,14.5375 13.7242,0.8135 30.5932,0.8135 C47.4622,0.8135 61.1872,14.5375 61.1872,31.4065 C61.1872,48.2755 47.4622,62.0005 30.5932,62.0005" id="Fill-2" fill="#FFF000" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+        <text id="OPEN-PLAYER" font-family="Ubuntu-Bold, Ubuntu" font-size="13" font-weight="bold" line-spacing="13" letter-spacing="-0.570402445" fill="#FFF000">
+            <tspan x="13.4100976" y="31">OPEN</tspan>
+            <tspan x="7.5" y="44">PLAYER</tspan>
+        </text>
+    </g>
+</svg>
