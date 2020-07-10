@@ -504,6 +504,14 @@ nav {
             padding-top: 25px;
         }
     }
+    .aftercreds-img {
+        width: 100%;
+        padding-top: 40px;
+    }
+    .aftercreds-caption {
+        margin-top: 10px;
+        font-style: italic;
+    }
 }
 
 footer {
@@ -778,8 +786,10 @@ footer {
         .purple-title { font-size: 40px; }
     }
     .people .adina-flex .text-flex { margin-bottom: 60px; }
-    .cred-heads p {
-        margin-right: unset;
+    .cred-heads {
+        p { margin-right: unset; width: 100%; }
+        .aftercreds-img { padding-top: 56px; }
+        .aftercreds-caption { margin-top: 15px; }
     }
     .player {
         display: none;
