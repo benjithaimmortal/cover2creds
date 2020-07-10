@@ -213,6 +213,12 @@ function downloadThePod() {
   window.open(download.getAttribute("download"), '_blank');
 }
 
+function shareThisPod() {
+  var active = document.querySelector('.episode.selected');
+  var link = JSON.parse(active.dataset.json).link;
+  window.open('https://twitter.com/intent/tweet?text=Check+out+this+episode+of+%40CovertoCredits+' + link, '_blank');
+}
+
 function closeThings() {
   // youtube
   document.getElementById("ytplayer").classList.remove('open');
@@ -340,8 +346,8 @@ widget.bind("PB.Widget.Events.READY", function(){
   var downloadButton = document.querySelector('#downloadWidget');
   downloadButton.addEventListener("click", downloadThePod);
 
-  // var shareButton = document.querySelector('#shareWidget');
-  // shareButton.addEventListener("click", shareThisPod);
+  var shareButton = document.querySelector('#shareWidget');
+  shareButton.addEventListener("click", shareThisPod);
 
   var thirtyBack = document.getElementById("back30");
   thirtyBack.addEventListener("click", function(){
