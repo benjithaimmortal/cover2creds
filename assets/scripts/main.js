@@ -315,7 +315,7 @@ widget.bind("PB.Widget.Events.READY", function(){
         var top = document.getElementById("podtop");
         top.scrollIntoView(true, {behavior: "smooth"});
 
-        closeThings();
+        // closeThings();
       });
     });
     
