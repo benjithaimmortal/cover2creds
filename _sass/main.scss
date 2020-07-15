@@ -105,6 +105,9 @@ a:hover {
     height: 45px;
     width: 45px;
     margin-right: 45px;
+    &:last-of-type {
+        margin-right: 0;
+    }
 }
 .social {
     display: flex;
@@ -803,9 +806,6 @@ footer {
     .social {
         .icon {
             margin-right: 30px;
-            &:last-of-type {
-                margin-right: 0;
-            }
         }
     }
 }
