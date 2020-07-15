@@ -382,7 +382,8 @@ nav {
         .spacer { margin-right: 25px; }
         div {
             // because of harry pothead, font size is not huge
-            font-size: 15px; 
+            font-size: 15px;
+            line-height: 24px;
             cursor: pointer;
             padding: 15px 10px 20px;
             border-bottom: solid 1px $light-gray;
