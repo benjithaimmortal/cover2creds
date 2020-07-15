@@ -22,10 +22,12 @@
 host: localhost
 # livereload: true
 
-webrick:
-  headers:
-    Access-Control-Allow-Origin: http://podbean.com
-    Vary: Origin
+
+livereload: true
+# webrick:
+#   headers:
+#     Access-Control-Allow-Origin: http://podbean.com
+#     Vary: Origin
 
 
 title: Cover to Credits
