@@ -154,6 +154,9 @@ nav {
             max-width: 180px;
             width: 100%;
             padding-bottom: 40px;
+            &.adina {
+                width: 120%;
+            }
         }
         .reel {
             max-width: 120px;
@@ -427,6 +430,9 @@ nav {
         .person {
             transform: rotate(14deg);
             padding-top: 10%;
+            &.adina {
+                width: 92%;
+            }
         }
         .object {
             right: 0;
