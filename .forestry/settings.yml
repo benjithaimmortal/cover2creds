@@ -7,10 +7,6 @@ sections:
 - type: document
   path: index.html
   label: Homepage
-  match: "**/*"
-- type: jekyll-pages
-  label: Page
-  create: none
 - type: directory
   path: _includes
   label: Includes
