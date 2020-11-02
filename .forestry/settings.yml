@@ -16,7 +16,6 @@ sections:
 - type: document
   path: _config.yml
   label: Scary Config Deets
-  match: "**/*"
   read_only: true
 upload_dir: assets/images
 public_path: "/assets/images"
