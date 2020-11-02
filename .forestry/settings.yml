@@ -12,6 +12,12 @@ sections:
   label: Includes
   create: none
   match: "**/*"
+  exclude: head.html
+- type: directory
+  path: _layouts
+  label: Scary Parts
+  create: none
+  match: "**/*"
 upload_dir: assets/images
 public_path: "/assets/images"
 front_matter_path: ''
