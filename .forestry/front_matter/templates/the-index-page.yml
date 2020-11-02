@@ -6,10 +6,12 @@ fields:
   name: layout
   label: layout
   hidden: true
+  description: Don't change this
 - type: text
   name: title
   label: title
   hidden: true
+  description: Don't change this either :)
 - name: ac_image
   type: file
   config:
