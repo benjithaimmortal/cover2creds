@@ -1,0 +1,13 @@
+---
+label: The Index Page
+hide_body: false
+fields:
+- type: text
+  name: layout
+  label: layout
+- type: text
+  name: title
+  label: title
+- type: file
+  name: ac_image
+  label: ac_image
