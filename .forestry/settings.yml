@@ -13,6 +13,8 @@ sections:
   create: none
   match: "**/*"
   exclude: head.html
+  templates:
+  - nothing
 - type: document
   path: _config.yml
   label: Scary Config Deets
