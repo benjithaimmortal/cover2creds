@@ -26,3 +26,5 @@ fields:
     schema:
       format: html-blocks
   label: About
+pages:
+- index.html
