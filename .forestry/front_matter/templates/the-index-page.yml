@@ -44,5 +44,14 @@ fields:
     schema:
       format: html-blocks
   label: Ian
+- name: patreon
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: true
+    schema:
+      format: html-blocks
+  label: Patreon
 pages:
 - index.html
