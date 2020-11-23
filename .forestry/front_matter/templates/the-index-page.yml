@@ -1,6 +1,6 @@
 ---
 label: The Index Page
-hide_body: false
+hide_body: true
 fields:
 - type: text
   name: layout
