@@ -62,8 +62,6 @@ async function changeEverything(download, selected) {
   var download    = document.getElementById("downloadWidget");
   var selectedObject = document.querySelector(".side-b .episode[data-count='" + selected + "']");
   
-  // console.log(selectedObject);
-  
   // the publish date
   // sure, there's a more idiomatic way to do that, but why? check out this mess of RSS date formatting:
   if (!podcastAttributes.length) {
@@ -87,7 +85,7 @@ async function changeEverything(download, selected) {
   // the download link
 
   // download.setAttribute("download", download);
-  download.setAttribute("download", download);
+  download.setAttribute("download", await podcastAttributes[selected].getElementsByTagName('enclosure')[0].getAttribute('url'));
   
 }
 
@@ -95,34 +93,41 @@ function setPlayer() {
   // player title
   var selectedObject = document.querySelector(".side-b .episode.selected");
   var json = JSON.parse(selectedObject.dataset.json);
+
+
+  // console.log(podcastAttributes[selected].getElementsByTagName('itunes:duration')[0].innerHTML);
+  console.log(json);
   var selected = selectedObject.dataset.count;
   var playerTitle = document.getElementById("title");
   playerTitle.innerHTML = selectedObject.innerHTML;
 
   // pod duration information
-  var duration = json['duration'];
+  // var duration = json['duration'];
+  var duration = json['durationString'];
   var endtime = document.getElementById('endtime');
-  var hours, minutes, seconds;
-  if (Math.floor(duration / 3600) !== 0) {
-    hours = Math.floor(duration / 3600);
-    hours += ":";
-  } else {
-    hours = '';
-  }
-  duration %= 3600;
-  if (Math.floor(duration / 60) !== 0) {
-    minutes = Math.floor(duration / 60);
-  } else {
-    minutes = 0 + Math.floor(duration / 60);
-  }
-  minutes += ":";
+  // var hours, minutes, seconds;
+
+  // if (Math.floor(duration / 3600) !== 0) {
+  //   hours = Math.floor(duration / 3600);
+  //   hours += ":";
+  // } else {
+  //   hours = '';
+  // }
+  // duration %= 3600;
+  // if (Math.floor(duration / 60) !== 0) {
+  //   minutes = Math.floor(duration / 60);
+  // } else {
+  //   minutes = 0 + Math.floor(duration / 60);
+  // }
+  // minutes += ":";
   
-  if (Math.floor(duration % 60) >= 10) {
-    seconds = Math.floor(duration % 60);
-  } else {
-    seconds = '0' + Math.floor(duration % 60);
-  }
-  endtime.innerHTML = hours + minutes + seconds;
+  // if (Math.floor(duration % 60) >= 10) {
+  //   seconds = Math.floor(duration % 60);
+  // } else {
+  //   seconds = '0' + Math.floor(duration % 60);
+  // }
+  // endtime.innerHTML = hours + minutes + seconds;
+  endtime.innerHTML = duration;
 
   // skip to track number awesome
   widget.skip(selected);
@@ -220,6 +225,8 @@ function downloadThePod() {
 function shareThisPod() {
   var active = document.querySelector('.episode.selected');
   var link = JSON.parse(active.dataset.json).link;
+  // console.log(link);
+  // return;
   window.open('https://twitter.com/intent/tweet?text=Check+out+this+episode+of+%40CovertoCredits+' + link, '_blank');
 }
 
@@ -293,9 +300,10 @@ widget.bind("PB.Widget.Events.READY", function(){
       }
       delete source['name'];
 
-      // console.log(source)
-
-      box.innerHTML = box.innerHTML + "<div class='episode' data-count='" + count + "' data-json='" + JSON.stringify(source) + "'>" + name + "</div>";
+      box.innerHTML = box.innerHTML + "<div class='episode' data-count='" + count + "' data-json='" + JSON.stringify({
+        'link': podcastAttributes[count].getElementsByTagName('link')[0].innerHTML,
+        'durationString': podcastAttributes[count].getElementsByTagName('itunes:duration')[0].innerHTML
+      }) + "'>" + name + "</div>";
       
       // if this is the first item, send it up to change everything and 'load' the stuff
       count === 0 ? changeEverything(source, selected) : false;
