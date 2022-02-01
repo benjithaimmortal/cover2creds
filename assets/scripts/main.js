@@ -54,19 +54,13 @@ var widget = new PB(iframeElement);
 // console.log(widget);
 
 
-async function changeEverything(json, selected) {
+async function changeEverything(download, selected) {
   var poster      = document.querySelector(".side-a .poster");
   var title       = document.querySelector(".side-a .title");
   var date        = document.querySelector(".side-a .date");
   var description = document.querySelector(".side-a .description");
   var download    = document.getElementById("downloadWidget");
   var selectedObject = document.querySelector(".side-b .episode[data-count='" + selected + "']");
-  
-  // the mini hero image
-  poster.src      = json['poster'];
-  
-  // the episode title
-  title.innerHTML = selectedObject.innerHTML;
   
   // console.log(selectedObject);
   
@@ -82,8 +76,18 @@ async function changeEverything(json, selected) {
   // the description
   description.innerHTML = await podcastAttributes[selected].getElementsByTagName('description')[0].innerHTML.slice(0, -3);
   
+
+  // the mini hero image
+  // console.log(podcastAttributes[selected].getElementsByTagName('itunes:image')[0].getAttribute('href'));
+  poster.src      = await podcastAttributes[selected].getElementsByTagName('itunes:image')[0].getAttribute('href');
+  
+  // the episode title
+  title.innerHTML      = await podcastAttributes[selected].getElementsByTagName('title')[0].innerHTML;
+
   // the download link
-  download.setAttribute("download", json['sources'][0]['src']);
+
+  // download.setAttribute("download", download);
+  download.setAttribute("download", download);
   
 }
 
@@ -243,6 +247,7 @@ domReady(function(){
   var youTube = document.getElementById("ytplayer");
   var ex = document.getElementById('ytex');
   
+  console.log(['boop']);
   introButton.addEventListener('click', function(){
     youTube.classList.add('open');
     ex.classList.add('open');
@@ -273,13 +278,22 @@ widget.bind("PB.Widget.Events.READY", function(){
 
   // simulateClick(iframeElement);
   widget.getSources(function(result){
+    // console.log(result);
+
     // add the source names to side-b
     var count = 0;
     var selected = 0;
     var box = document.querySelector(".spacer");
     result.forEach( source => {
       var name = source['name'];
+
+      if (!name) {
+        // console.log(name);
+        name = podcastAttributes[count].getElementsByTagName('title')[0].innerHTML;
+      }
       delete source['name'];
+
+      // console.log(source)
 
       box.innerHTML = box.innerHTML + "<div class='episode' data-count='" + count + "' data-json='" + JSON.stringify(source) + "'>" + name + "</div>";
       
