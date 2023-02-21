@@ -770,6 +770,9 @@ footer {
 }
 
 @media (max-width: 650px) {
+    * {
+        scroll-margin-top: 0px;
+    }
     .title-blocks {
         .logo {
             top: 55%;
